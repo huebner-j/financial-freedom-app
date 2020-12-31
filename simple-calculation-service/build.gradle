@@ -1,0 +1,40 @@
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+    id 'idea'
+    // Apply the application plugin to add support for building a CLI application.
+    id 'application'
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+ext {
+    dropwizardVersion = '2.0.17'
+}
+
+dependencies {
+    implementation enforcedPlatform("io.dropwizard:dropwizard-bom:$dropwizardVersion")
+    implementation enforcedPlatform("io.dropwizard:dropwizard-dependencies:$dropwizardVersion")
+
+    implementation 'io.dropwizard:dropwizard-core'
+
+    testImplementation 'io.dropwizard:dropwizard-testing'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.assertj:assertj-core'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+application {
+    // Define the main class for the application.
+    mainClassName = 'com.huebnerj.financial.freedom.SimpleCalculationApp'
+}
