@@ -1,18 +1,24 @@
-version: 1
-update_configs:
-  - package_manager: "java:gradle"
+version: 2
+updates:
+  - package-ecosystem: "gradle"
     target_branch: "main"
     directory: "/"
-    update_schedule: "daily"
+    schedule:
+      interval: "daily"
     commit_message:
       prefix: "fix"
       prefix_development: "chore"
       include_scope: true
-  - package_manager: "github_actions"
+    reviewers:
+      - "huebner-j"
+  - package-ecosystem: "github-actions"
     target_branch: "main"
     directory: "/"
-    update_schedule: "weekly"
+    schedule:
+      interval: "weekly"
     commit_message:
       prefix: "chore"
       prefix_development: "chore"
       include_scope: true
+    reviewers:
+      - "huebner-j"
