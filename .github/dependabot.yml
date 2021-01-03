@@ -10,6 +10,16 @@ updates:
       include: "scope"
     reviewers:
       - "huebner-j"
+  - package-ecosystem: "docker"
+    target-branch: "main"
+    directory: "/simple-calculation-service"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "fix"
+      include: "scope"
+    reviewers:
+      - "huebner-j"
   - package-ecosystem: "github-actions"
     target-branch: "main"
     directory: "/"
