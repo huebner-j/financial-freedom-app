@@ -16,8 +16,11 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         id: semantic
         with:
+          branch: ['main']
           extra_plugins: |
+            @semantic-release/commit-analyzer
+            @semantic-release/release-notes-generator
             @semantic-release/git
-            @semantic-release/changelog
+            @semantic-release/github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
