@@ -1,0 +1,29 @@
+name: Publish Docker image
+on:
+  release:
+    types: [published]
+jobs:
+  push_to_registry:
+    name: Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Build Java Artifacts
+        run: ./gradlew installDist
+
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          context: ./simple-calculation-service
+          file: ./Dockerfile
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: huebner-j/financial-freedom-app/simple-calculation-service
+          tag_with_ref: true
