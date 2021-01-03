@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  semantic-release:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,9 +14,8 @@ jobs:
 
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
-        id: semantic
         with:
-          branch: ['main']
+          semantic_version: 17.0.8
           extra_plugins: |
             @semantic-release/commit-analyzer
             @semantic-release/release-notes-generator

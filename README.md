@@ -20,6 +20,6 @@ is written in Java using [Dropwizard](https://www.dropwizard.io/en/latest/) fram
 # Semantic versioning
 
 This project uses conventional commits and semantic versioning to implement a simple and automatic 
-release process. If you would like to collaborate on this project, please make sure your commit 
+release process. If you would like to contribute to this project, please ensure your commit 
 messages follow the structure of conventional commits according to 
 [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/) 
