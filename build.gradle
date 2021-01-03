@@ -1,5 +1,4 @@
 plugins {
-    id 'java'
     id "com.diffplug.spotless" version "5.8.2"
 }
 
@@ -8,15 +7,11 @@ repositories {
 }
 
 subprojects {
-    apply plugin: 'java'
     apply plugin: 'com.diffplug.spotless'
 
     spotless {
         java { googleJavaFormat('1.9') }
     }
 
-    sourceCompatibility = JavaVersion.VERSION_11
-
     group 'com.huebnerj.financial.freedom'
-    version = System.getenv('SEMANTIC_VERSION')
 }
