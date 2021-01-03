@@ -16,7 +16,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         id: semantic
         with:
-          branch: ['main']
+          branches: ['main']
           extra_plugins: |
             @semantic-release/commit-analyzer
             @semantic-release/release-notes-generator
