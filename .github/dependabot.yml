@@ -1,24 +1,22 @@
 version: 2
 updates:
   - package-ecosystem: "gradle"
-    target_branch: "main"
+    target-branch: "main"
     directory: "/"
     schedule:
       interval: "daily"
-    commit_message:
+    commit-message:
       prefix: "fix"
-      prefix_development: "chore"
-      include_scope: true
+      include: "scope"
     reviewers:
       - "huebner-j"
   - package-ecosystem: "github-actions"
-    target_branch: "main"
+    target-branch: "main"
     directory: "/"
     schedule:
       interval: "weekly"
-    commit_message:
+    commit-message:
       prefix: "chore"
-      prefix_development: "chore"
-      include_scope: true
+      include: "scope"
     reviewers:
       - "huebner-j"
