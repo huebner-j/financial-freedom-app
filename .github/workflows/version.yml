@@ -20,6 +20,6 @@ jobs:
             @semantic-release/commit-analyzer
             @semantic-release/release-notes-generator
             @semantic-release/git
-            @semantic-release/github
+            @semantic-release/github@7.0.7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
