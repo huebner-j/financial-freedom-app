@@ -29,7 +29,7 @@ class SimpleCalculationServiceTest {
     var result = objectUnderTest.calculate(100000L, 10.0, 800, 10000).get();
 
     // THEN
-    assertThat(result.getYearsNeeded()).isEqualTo(20);
+    assertThat(result.getYearsNeeded()).isEqualTo(30);
   }
 
   @Test

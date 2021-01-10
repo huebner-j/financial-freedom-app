@@ -37,10 +37,11 @@ class SimpleCalculationResourceIT {
 
       var calculationResult = response.readEntity(FinancialFreedomCalculation.class);
 
-      assertThat(calculationResult.getYearsNeeded()).isEqualTo(26);
-      assertThat(calculationResult.getSavedAmount().doubleValue()).isEqualTo(312000.0);
-      assertThat(calculationResult.getInterestAmount().doubleValue()).isEqualTo(560191.17);
-      assertThat(calculationResult.getTotalAmount().doubleValue()).isEqualTo(882191.17);
+      assertThat(calculationResult.getYearsNeeded()).isEqualTo(36);
+      assertThat(calculationResult.getSavedAmount().doubleValue()).isEqualTo(432000.0);
+      assertThat(calculationResult.getInterestAmount().doubleValue()).isEqualTo(828491.32);
+      assertThat(calculationResult.getTaxesPaid().doubleValue()).isEqualTo(286500.14);
+      assertThat(calculationResult.getTotalAmount().doubleValue()).isEqualTo(1270491.32);
       assertThat(response.getStatus()).isEqualTo(HttpStatus.OK_200);
     }
   }

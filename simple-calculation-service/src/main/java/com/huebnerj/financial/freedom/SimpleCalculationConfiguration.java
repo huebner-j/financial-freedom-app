@@ -10,11 +10,11 @@ public class SimpleCalculationConfiguration extends Configuration {
   @Max(100)
   @Min(0)
   @NotNull
-  private Double tax = 0.0;
+  private Double tax = 26.375;
 
   @Min(0)
   @NotNull
-  private Long taxExemptionEuro = 0L;
+  private Long taxExemptionEuro = 801L;
 
   @Min(0)
   private int maxYears = 100;
