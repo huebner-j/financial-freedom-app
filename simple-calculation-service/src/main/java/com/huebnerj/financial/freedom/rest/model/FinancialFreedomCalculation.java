@@ -10,6 +10,7 @@ public class FinancialFreedomCalculation {
   private BigDecimal totalAmount;
   private BigDecimal interestAmount;
   private BigDecimal savedAmount;
+  private BigDecimal taxesPaid;
 
   private List<YearCalculation> calculation;
 
@@ -47,5 +48,14 @@ public class FinancialFreedomCalculation {
   public FinancialFreedomCalculation setSavedAmount(BigDecimal savedAmount) {
     this.savedAmount = savedAmount;
     return this;
+  }
+
+  public FinancialFreedomCalculation setTaxesPaid(BigDecimal taxes) {
+    this.taxesPaid = taxes;
+    return this;
+  }
+
+  public BigDecimal getTaxesPaid() {
+    return taxesPaid;
   }
 }

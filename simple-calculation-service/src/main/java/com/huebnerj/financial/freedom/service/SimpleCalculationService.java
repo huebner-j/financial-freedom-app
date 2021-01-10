@@ -9,9 +9,11 @@ import java.util.Optional;
 public class SimpleCalculationService {
 
   private final SimpleCalculationConfiguration configuration;
+  private final TaxCalculator taxCalculator;
 
   public SimpleCalculationService(SimpleCalculationConfiguration configuration) {
     this.configuration = configuration;
+    this.taxCalculator = new TaxCalculator(configuration);
   }
 
   /**
@@ -32,25 +34,35 @@ public class SimpleCalculationService {
     double totalAmount = seedCapital;
     double totalSavedAmount = 0.0;
     double totalInterestAmount = 0.0;
+    double totalTaxesPaid = 0.0;
+
     int yearsNeeded = 0;
-    while (totalAmount * (interest / 100) / 12 <= desiredMonthlyIncome) {
+    var interestThisYear = taxCalculator.applyTaxes(totalAmount * (interest / 100));
+    while (interestThisYear / 12 <= desiredMonthlyIncome) {
 
       if (yearsNeeded > configuration.getMaxYears()) {
         return Optional.empty();
       }
       ++yearsNeeded;
-      totalInterestAmount = totalInterestAmount + totalAmount * (interest / 100);
+      var taxFreeInterestThisYear = totalAmount * (interest / 100);
+      interestThisYear = taxCalculator.applyTaxes(taxFreeInterestThisYear);
+
+      totalTaxesPaid = totalTaxesPaid + taxCalculator.calculateTaxes(taxFreeInterestThisYear);
+      totalInterestAmount = totalInterestAmount + interestThisYear;
       totalSavedAmount = totalSavedAmount + monthlySavingAmount * 12;
-      totalAmount = totalAmount * (1 + interest / 100) + monthlySavingAmount * 12;
+      totalAmount = totalAmount + interestThisYear + monthlySavingAmount * 12;
     }
 
     return Optional.of(
         new FinancialFreedomCalculation()
             .setYearsNeeded(yearsNeeded)
-            .setTotalAmount(BigDecimal.valueOf(totalAmount).setScale(2, RoundingMode.HALF_UP))
-            .setInterestAmount(
-                BigDecimal.valueOf(totalInterestAmount).setScale(2, RoundingMode.HALF_UP))
-            .setSavedAmount(
-                BigDecimal.valueOf(totalSavedAmount).setScale(2, RoundingMode.HALF_UP)));
+            .setTotalAmount(convertToMoneyUnit(totalAmount))
+            .setInterestAmount(convertToMoneyUnit(totalInterestAmount))
+            .setSavedAmount(convertToMoneyUnit(totalSavedAmount))
+            .setTaxesPaid(convertToMoneyUnit(totalTaxesPaid)));
+  }
+
+  private static BigDecimal convertToMoneyUnit(double totalInterestAmount) {
+    return BigDecimal.valueOf(totalInterestAmount).setScale(2, RoundingMode.HALF_UP);
   }
 }
