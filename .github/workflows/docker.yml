@@ -21,7 +21,7 @@ jobs:
         uses: docker/build-push-action@v2.2.1
         with:
           context: ./simple-calculation-service
-          file: ./Dockerfile
+          file: ./simple-calculation-service/Dockerfile
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
