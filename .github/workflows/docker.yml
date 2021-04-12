@@ -19,7 +19,7 @@ jobs:
         run: ./gradlew installDist
 
       - name: Push to GitHub Packages
-        uses: docker/build-push-action@v2.3.0
+        uses: docker/build-push-action@v2.4.0
         with:
           context: ./simple-calculation-service
           file: ./simple-calculation-service/Dockerfile
