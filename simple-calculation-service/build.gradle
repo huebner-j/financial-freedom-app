@@ -15,7 +15,7 @@ test {
 }
 
 ext {
-    dropwizardVersion = '2.0.22'
+    dropwizardVersion = '2.0.23'
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
